@@ -1,0 +1,31 @@
+{
+    "version": "2026.07.28",
+    "description": "Video Duplicate Finder - find duplicate and similar videos or images by content (GUI)",
+    "homepage": "https://github.com/0x90d/videoduplicatefinder",
+    "license": "AGPL-3.0",
+    "url": "https://github.com/0x90d/videoduplicatefinder/releases/download/4.1.x/GUI-win-x64.zip",
+    "hash": "1cbe043f65ed2d236d18be9c4f527e26587e6afaf740c3b74be13641161b4762",
+    "pre_install": "if (!(Test-Path \"$persist_dir\\Settings.json\")) { Set-Content \"$dir\\Settings.json\" '{}' -NoNewline }",
+    "post_install": "Remove-Item \"$dir\\*.pdb\" -Force -ErrorAction SilentlyContinue",
+    "persist": "Settings.json",
+    "shortcuts": [
+        [
+            "VDF.GUI.exe",
+            "Video Duplicate Finder"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/0x90d/videoduplicatefinder/releases/tags/4.1.x",
+        "regex": "\"name\":\\s*\"GUI-win-x64\\.zip\"[\\s\\S]*?\"updated_at\":\\s*\"(\\d{4})-(\\d{2})-(\\d{2})",
+        "replace": "${1}.${2}.${3}"
+    },
+    "autoupdate": {
+        "url": "https://github.com/0x90d/videoduplicatefinder/releases/download/4.1.x/GUI-win-x64.zip"
+    },
+    "notes": [
+        "Upstream ships rolling nightlies: the 4.1.x release assets are re-uploaded on every build, so the manifest version is the BUILD DATE of GUI-win-x64.zip. If upstream rebuilds on the same day after Excavator ran, the hash check fails until the next Excavator pass a few hours later.",
+        "ffmpeg and ffprobe are required - scoop's ffmpeg/ffmpeg-shared on PATH satisfies this. Decline VDF's own download offer: it would drop them into the app dir, which is wiped on every update.",
+        "The scan database (ScannedFiles.db) sits in the app dir by default and does NOT survive updates - set a custom database folder in VDF settings (e.g. a folder under ~\\scoop\\persist\\vdf) to keep scan results.",
+        "The nightly zip carries ~260 MB of .pdb debug symbols - they are deleted after install."
+    ]
+}

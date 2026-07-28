@@ -22,6 +22,7 @@ scoop install refaim/nvencc
 | `xdoc2txt` | Extract plain text from PDF/Office/RTF documents | [ebstudio.info](https://ebstudio.info/home/xdoc2txt.html) |
 | `coolreader` | CoolReader 3 e-book reader (pinned, see below) | [crengine](https://sourceforge.net/projects/crengine/) |
 | `scanner` | Sunburst disk space visualizer (pinned, see below) | [steffengerlach.de](http://www.steffengerlach.de/freeware/) |
+| `vdf` | Video Duplicate Finder GUI (rolling nightly) | [0x90d/videoduplicatefinder](https://github.com/0x90d/videoduplicatefinder) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -50,9 +51,11 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Two exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
-off the ebstudio.info homepage, and `vp-bwdif` (upstream ships binaries only as PyPI
-wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash.
+the manifest needs. Three exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
+wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
+`vdf` tracks a rolling nightly release, so its version is the asset's build date
+taken from the GitHub release API and every date bump re-hashes the same URL.
 
 Check a single manifest locally against upstream:
 
