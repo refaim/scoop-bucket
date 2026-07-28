@@ -1,0 +1,24 @@
+{
+    "version": "R20",
+    "description": "BestSource - FFmpeg-based audio/video source filter for VapourSynth with exact frame-accurate seeking",
+    "homepage": "https://github.com/vapoursynth/bestsource",
+    "license": "MIT",
+    "url": "https://github.com/vapoursynth/bestsource/releases/download/R20/BestSource-R20-win64-clang-vs-only.zip",
+    "hash": "3bce2a4ea97ae3ce0d781094733ec653fe1bfcaa88f344f5f557a8deed8ab3d6",
+    "post_install": [
+        "Get-ChildItem \"$dir\\*.dll\" | Rename-Item -NewName 'BestSource.dll'"
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/vapoursynth/bestsource/releases/latest",
+        "regex": "download/(?<version>R\\d+)/BestSource-R\\d+-win64-clang-vs-only\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/vapoursynth/bestsource/releases/download/$version/BestSource-$version-win64-clang-vs-only.zip"
+    },
+    "notes": [
+        "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself.",
+        "Upstream names the file after the release (BestSource-R20-win64-clang-vs-only.dll); it is renamed to BestSource.dll so a link to ...\\apps\\bestsource\\current\\BestSource.dll keeps working across updates.",
+        "This packages the clang 'vs-only' build. If you also need AviSynth+, switch the url to BestSource-$version-win64-msvc.zip.",
+        "R20 needs VapourSynth R78 or newer (it uses the new turn functions for rotation)."
+    ]
+}

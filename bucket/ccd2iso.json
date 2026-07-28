@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "description": "Convert CloneCD .img disc images to .iso - Python port of the classic SourceForge ccd2iso",
+    "homepage": "https://github.com/jkmartindale/ccd2iso",
+    "license": "MPL-2.0",
+    "url": "https://github.com/jkmartindale/ccd2iso/releases/download/v0.0.1/ccd2iso.exe",
+    "hash": "9e26b9e0afda1668dbbc8d0b4eba5a8e357a96b6e5d0f00a0b78852e09cb6c51",
+    "bin": "ccd2iso.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/jkmartindale/ccd2iso/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/ccd2iso\\.exe"
+    },
+    "autoupdate": {
+        "url": "https://github.com/jkmartindale/ccd2iso/releases/download/v$version/ccd2iso.exe"
+    },
+    "notes": "PyInstaller onefile build - the first launch unpacks itself to %TEMP%, so expect a short startup delay."
+}

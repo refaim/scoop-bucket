@@ -1,0 +1,23 @@
+{
+    "version": "5.1.0",
+    "description": "Vship (NVIDIA/CUDA build) - GPU-accelerated SSIMULACRA2, Butteraugli and CVVDP metrics as a VapourSynth plugin",
+    "homepage": "https://codeberg.org/Line-fr/Vship",
+    "license": {
+        "identifier": "MIT-NON-AI",
+        "url": "https://codeberg.org/Line-fr/Vship/src/branch/main/LICENSE"
+    },
+    "url": "https://codeberg.org/Line-fr/Vship/releases/download/v5.1.0/libvship_NVIDIA.zip",
+    "hash": "ed8f568ca47de49846c3b9ccc3309264e84ffedb6c54ac8b6f5146a8b33b74b8",
+    "checkver": {
+        "url": "https://codeberg.org/api/v1/repos/Line-fr/Vship/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/libvship_NVIDIA\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://codeberg.org/Line-fr/Vship/releases/download/v$version/libvship_NVIDIA.zip"
+    },
+    "notes": [
+        "This is the CUDA build - it needs an NVIDIA GPU. AMD (HIP) and Vulkan builds exist upstream as separate assets.",
+        "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself. Upstream keeps the file name stable, so ...\\apps\\vship-nvidia\\current\\libvship_NVIDIA.dll survives updates as a link target.",
+        "Upstream also ships FFVship, a standalone CLI for the same metrics - not included here."
+    ]
+}

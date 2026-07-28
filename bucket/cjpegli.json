@@ -1,0 +1,20 @@
+{
+    "version": "0.11.2",
+    "description": "cjpegli - JPEG encoder from the jpegli project, shipped inside the libjxl release archives",
+    "homepage": "https://github.com/libjxl/libjxl",
+    "license": "BSD-3-Clause",
+    "url": "https://github.com/libjxl/libjxl/releases/download/v0.11.2/jxl-x64-windows-static.zip",
+    "hash": "97dc815bdd99ba243d8502050357342cf649251a5df069f8c3daee6828cbe0ce",
+    "extract_dir": "bin",
+    "post_install": [
+        "Get-ChildItem $dir -File -Filter *.exe | Where-Object Name -ne 'cjpegli.exe' | Remove-Item -Force"
+    ],
+    "bin": "cjpegli.exe",
+    "notes": [
+        "Pinned on purpose: v0.11.2 is the last libjxl release that ships cjpegli.exe. v0.12.0 dropped it from every Windows archive, so checkver/autoupdate are deliberately absent - an automatic bump would silently install a build without the tool.",
+        "Not deprecated, spun off: libjxl v0.12.0 removed the jpegli codebase because it now lives at github.com/google/jpegli (libjxl PR #4657). That repo is active but has published no releases yet, so there is no newer prebuilt binary to point at. Re-point this manifest once it ships Windows assets.",
+        "Only the x64 static archive carries cjpegli - the dynamic jxl-x64-windows.zip of the same release contains just brotli.exe.",
+        "This is a static build: cjpegli.exe has no bundled DLL dependencies.",
+        "The archive holds ~24 other tools (cjxl, djxl, djpegli, ssimulacra2, ...); they are removed on install since this package exists for cjpegli only. Drop the post_install line to keep them."
+    ]
+}

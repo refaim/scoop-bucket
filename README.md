@@ -1,0 +1,46 @@
+# scoop-bucket
+
+Personal [Scoop](https://scoop.sh) bucket.
+
+```powershell
+scoop bucket add hrt https://github.com/<user>/scoop-bucket
+scoop install hrt/nvencc
+```
+
+| App | Description | Upstream |
+| --- | --- | --- |
+| `nvencc` | NVENC/NVDEC hardware video encoder CLI | [rigaya/NVEnc](https://github.com/rigaya/NVEnc) |
+| `mkclean` | Optimise and repair Matroska files | [matroska.org](https://www.matroska.org/downloads/mkclean.html) |
+| `dovi_tool` | Dolby Vision RPU/metadata CLI (x64 + arm64) | [quietvoid/dovi_tool](https://github.com/quietvoid/dovi_tool) |
+| `cjpegli` | jpegli JPEG encoder (pinned, see below) | [libjxl/libjxl](https://github.com/libjxl/libjxl) |
+| `bestsource` | VapourSynth source filter (FFmpeg-based) | [vapoursynth/bestsource](https://github.com/vapoursynth/bestsource) |
+| `vship-nvidia` | VapourSynth GPU metrics plugin (CUDA build) | [Line-fr/Vship](https://codeberg.org/Line-fr/Vship) |
+| `bg3-mod-manager` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
+| `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
+| `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
+
+`bestsource` and `vship-nvidia` are VapourSynth plugins, not programs. The DLL stays
+inside the package directory - link it into your plugin path yourself. Both keep a
+stable file name, so a link to `...\apps\<name>\current\<name>.dll` survives updates.
+
+`cjpegli` is pinned to libjxl v0.11.2 and has no `checkver`: v0.12.0 dropped
+`cjpegli.exe` from every Windows archive, so an automatic bump would install a build
+without the tool.
+
+## Updates
+
+The `Excavator` workflow runs every 6 hours: it checks upstream for new releases,
+rewrites `version` + `url`, recomputes the hash and commits back to `main`.
+No manual work required.
+
+Every `checkver` points at a `/releases/latest` endpoint, which by definition returns
+the newest release that is neither a prerelease nor a draft - RC builds are never
+picked up. The regex matches the asset download URL rather than the tag, so a release
+is only accepted if it actually contains the file the manifest needs.
+
+Check a single manifest locally against upstream:
+
+```powershell
+# from a scoop checkout
+bin\checkver.ps1 -App nvencc -Dir <path-to>\scoop-bucket\bucket -Update
+```

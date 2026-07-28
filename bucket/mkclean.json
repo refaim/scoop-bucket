@@ -1,0 +1,20 @@
+{
+    "version": "0.9.0",
+    "description": "mkclean - optimise, repair and make Matroska (.mkv/.webm) files streamable",
+    "homepage": "https://www.matroska.org/downloads/mkclean.html",
+    "license": {
+        "identifier": "BSD-3-Clause",
+        "url": "https://www.matroska.org/license.html"
+    },
+    "url": "https://downloads.sourceforge.net/project/matroska/mkclean/mkclean-0.9.0-win64.zip",
+    "hash": "689c25e297ccbb9dce4860312a52c12a93e5f87d4c04120dfbbbf33baf24be8b",
+    "bin": "mkclean.exe",
+    "checkver": {
+        "url": "https://sourceforge.net/projects/matroska/rss?path=/mkclean",
+        "regex": "mkclean-([\\d.]+)-win64\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://downloads.sourceforge.net/project/matroska/mkclean/mkclean-$version-win64.zip"
+    },
+    "notes": "Upstream is effectively frozen - 0.9.0 dates from 2021 and no newer release is expected."
+}

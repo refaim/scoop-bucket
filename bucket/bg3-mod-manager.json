@@ -1,0 +1,27 @@
+{
+    "version": "1.0.12.9",
+    "description": "Mod manager for Baldur's Gate 3",
+    "homepage": "https://github.com/LaughingLeader/BG3ModManager",
+    "license": "MIT",
+    "url": "https://github.com/LaughingLeader/BG3ModManager/releases/download/1.0.12.9/BG3ModManager_Latest.zip",
+    "hash": "d28670a6b4abee65c0818c67a90540df141971193eaff53d47a8af2743dd22d3",
+    "shortcuts": [
+        [
+            "BG3ModManager.exe",
+            "BG3 Mod Manager"
+        ]
+    ],
+    "persist": "Data",
+    "checkver": {
+        "url": "https://api.github.com/repos/LaughingLeader/BG3ModManager/releases/latest",
+        "regex": "download/(?<version>[\\d.]+)/BG3ModManager_Latest\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/LaughingLeader/BG3ModManager/releases/download/$version/BG3ModManager_Latest.zip"
+    },
+    "notes": [
+        "Requires the .NET 8 Desktop Runtime (Microsoft.WindowsDesktop.App 8.0).",
+        "The app self-updates via AutoUpdater.NET (Update.xml appcast). The prompt is optional - decline it and let scoop handle updates, or the app dir stops matching the version scoop recorded.",
+        "Settings and profiles live in the persisted 'Data' folder and survive updates."
+    ]
+}

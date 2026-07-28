@@ -1,0 +1,32 @@
+{
+    "version": "2.3.3",
+    "description": "dovi_tool - CLI utilities for working with Dolby Vision metadata (RPU extraction, injection, conversion, demux)",
+    "homepage": "https://github.com/quietvoid/dovi_tool",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/quietvoid/dovi_tool/releases/download/2.3.3/dovi_tool-2.3.3-x86_64-pc-windows-msvc.zip",
+            "hash": "37ae198f2a535c910befad39fc09c21cded76bf3ef2d5459d542e58c2c158311"
+        },
+        "arm64": {
+            "url": "https://github.com/quietvoid/dovi_tool/releases/download/2.3.3/dovi_tool-2.3.3-aarch64-pc-windows-msvc.zip",
+            "hash": "559ed634ef0b956ab89ed965b4920371bb228983f105d99fafeb372a8190c872"
+        }
+    },
+    "bin": "dovi_tool.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/quietvoid/dovi_tool/releases/latest",
+        "regex": "download/(?<version>[\\d.]+)/dovi_tool-[\\d.]+-x86_64-pc-windows-msvc\\.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/quietvoid/dovi_tool/releases/download/$version/dovi_tool-$version-x86_64-pc-windows-msvc.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/quietvoid/dovi_tool/releases/download/$version/dovi_tool-$version-aarch64-pc-windows-msvc.zip"
+            }
+        }
+    },
+    "notes": "The same releases also carry libdovi, the C library - it is not part of this package."
+}
