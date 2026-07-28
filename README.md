@@ -3,7 +3,7 @@
 Personal [Scoop](https://scoop.sh) bucket.
 
 ```powershell
-scoop bucket add hrt https://github.com/<user>/scoop-bucket
+scoop bucket add hrt https://github.com/refaim/scoop-bucket
 scoop install hrt/nvencc
 ```
 
