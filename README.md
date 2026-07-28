@@ -15,7 +15,7 @@ scoop install hrt/nvencc
 | `cjpegli` | jpegli JPEG encoder (pinned, see below) | [libjxl/libjxl](https://github.com/libjxl/libjxl) |
 | `bestsource` | VapourSynth source filter (FFmpeg-based) | [vapoursynth/bestsource](https://github.com/vapoursynth/bestsource) |
 | `vship-nvidia` | VapourSynth GPU metrics plugin (CUDA build) | [Line-fr/Vship](https://codeberg.org/Line-fr/Vship) |
-| `bg3-mod-manager` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
+| `bg3mm` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
 | `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
 | `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
 
