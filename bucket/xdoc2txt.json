@@ -1,0 +1,22 @@
+{
+    "version": "2.21",
+    "description": "Extract plain text from PDF, Word, Excel, PowerPoint, RTF and other documents - tiny, fast, no dependencies",
+    "homepage": "https://ebstudio.info/home/xdoc2txt.html",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://ebstudio.info/home/xdoc2txt.html"
+    },
+    "url": "https://ebstudio.info/download/KWICFinder/xd2tx221_x64.zip",
+    "hash": "69b234a88812f10343bdb052a62d146a266f68258741e9f9d646fb856765e66a",
+    "extract_dir": "command",
+    "bin": "xdoc2txt.exe",
+    "checkver": {
+        "url": "https://ebstudio.info/home/xdoc2txt.html",
+        "regex": "xd2tx(\\d)(\\d+)_x64\\.zip",
+        "replace": "${1}.${2}"
+    },
+    "autoupdate": {
+        "url": "https://ebstudio.info/download/KWICFinder/xd2tx$cleanVersion_x64.zip"
+    },
+    "notes": "Default output encoding is Shift_JIS - pass -8 to get UTF-8."
+}

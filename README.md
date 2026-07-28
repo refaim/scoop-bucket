@@ -18,6 +18,7 @@ scoop install hrt/nvencc
 | `bg3mm` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
 | `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
 | `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
+| `xdoc2txt` | Extract plain text from PDF/Office/RTF documents | [ebstudio.info](https://ebstudio.info/home/xdoc2txt.html) |
 
 `bestsource` and `vship-nvidia` are VapourSynth plugins, not programs. The DLL stays
 inside the package directory - link it into your plugin path yourself. Both keep a
@@ -33,10 +34,12 @@ The `Excavator` workflow runs every 6 hours: it checks upstream for new releases
 rewrites `version` + `url`, recomputes the hash and commits back to `main`.
 No manual work required.
 
-Every `checkver` points at a `/releases/latest` endpoint, which by definition returns
-the newest release that is neither a prerelease nor a draft - RC builds are never
-picked up. The regex matches the asset download URL rather than the tag, so a release
-is only accepted if it actually contains the file the manifest needs.
+Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint,
+which by definition returns the newest release that is neither a prerelease nor a
+draft - RC builds are never picked up. The regex matches the asset download URL
+rather than the tag, so a release is only accepted if it actually contains the file
+the manifest needs. `xdoc2txt` is the exception (no GitHub): its `checkver` scrapes
+the x64 zip link off the ebstudio.info homepage.
 
 Check a single manifest locally against upstream:
 
