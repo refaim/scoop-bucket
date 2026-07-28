@@ -3,8 +3,8 @@
 Personal [Scoop](https://scoop.sh) bucket.
 
 ```powershell
-scoop bucket add hrt https://github.com/refaim/scoop-bucket
-scoop install hrt/nvencc
+scoop bucket add refaim https://github.com/refaim/scoop-bucket
+scoop install refaim/nvencc
 ```
 
 | App | Description | Upstream |
