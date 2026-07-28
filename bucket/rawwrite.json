@@ -5,7 +5,6 @@
     "license": "GPL-2.0-only",
     "url": "https://github.com/emeric-martineau/rawwritewin/releases/download/v0.9.0/rawwritewin-0.9.exe#/rawwritewin.exe",
     "hash": "3351665e8ddc083cd2bc0492289c0534ae88dfaebb032e1d10bbc8388b449a11",
-    "bin": "rawwritewin.exe",
     "shortcuts": [
         [
             "rawwritewin.exe",
@@ -20,7 +19,7 @@
         "url": "https://github.com/emeric-martineau/rawwritewin/releases/download/$matchTag/rawwritewin-$version.exe#/rawwritewin.exe"
     },
     "notes": [
-        "Upstream ships a bare Delphi-built executable, not an installer - it is placed as-is and renamed to a stable rawwritewin.exe so shims survive version bumps.",
+        "Upstream ships a bare Delphi-built executable, not an installer - it is placed as-is and renamed to a stable rawwritewin.exe so the Start Menu shortcut survives version bumps.",
         "The binary carries no elevation manifest, so it starts as a normal user but raw device access is denied: run it as administrator to actually write an image."
     ]
 }

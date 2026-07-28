@@ -17,7 +17,7 @@ scoop install refaim/nvencc
 | `vp-vship` | VapourSynth GPU metrics plugin (CUDA build) | [Line-fr/Vship](https://codeberg.org/Line-fr/Vship) |
 | `vp-bwdif` | VapourSynth deinterlacing plugin (FFmpeg bwdif) | [HolyWu/VapourSynth-Bwdif](https://github.com/HolyWu/VapourSynth-Bwdif) |
 | `bg3mm` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
-| `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
+| `rawwrite` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
 | `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
 | `xdoc2txt` | Extract plain text from PDF/Office/RTF documents | [ebstudio.info](https://ebstudio.info/home/xdoc2txt.html) |
 | `coolreader` | CoolReader 3 e-book reader (pinned, see below) | [crengine](https://sourceforge.net/projects/crengine/) |

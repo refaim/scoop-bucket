@@ -8,7 +8,6 @@
     "extract_dir": "cr3",
     "pre_install": "if (!(Test-Path \"$persist_dir\\cr3.ini\")) { New-Item \"$dir\\cr3.ini\" -ItemType File | Out-Null }",
     "persist": "cr3.ini",
-    "bin": "cr3.exe",
     "shortcuts": [
         [
             "cr3.exe",
