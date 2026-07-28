@@ -1,0 +1,20 @@
+{
+    "version": "2.13",
+    "description": "Scanner - disk space usage visualizer drawing the whole drive as a sunburst chart",
+    "homepage": "http://www.steffengerlach.de/freeware/",
+    "license": "Freeware",
+    "url": "http://www.steffengerlach.de/freeware/scn2.zip",
+    "hash": "c691fc6f68feb62be2ef76622d2be4e4334021f84f942d0e236ea9ecd5f81487",
+    "shortcuts": [
+        [
+            "Scanner.exe",
+            "Scanner"
+        ]
+    ],
+    "notes": [
+        "Pinned to 2.13 (July 2012) - the download URL carries no version and upstream has been dormant since, so there is nothing for checkver to watch.",
+        "Settings (window position, colors) live in the registry under HKCU\\Software\\Steffen Gerlach - scoop neither persists nor removes them.",
+        "The bundled 'Add Scanner to Context Menu.reg' hardcodes C:\\Program Files\\Scanner - edit the path to ...\\apps\\scanner\\current\\Scanner.exe before importing if you want the right-click entry.",
+        "The site is HTTP-only, no TLS - the pinned hash is what guarantees integrity."
+    ]
+}
