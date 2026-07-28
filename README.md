@@ -13,14 +13,14 @@ scoop install refaim/nvencc
 | `mkclean` | Optimise and repair Matroska files | [matroska.org](https://www.matroska.org/downloads/mkclean.html) |
 | `dovi_tool` | Dolby Vision RPU/metadata CLI (x64 + arm64) | [quietvoid/dovi_tool](https://github.com/quietvoid/dovi_tool) |
 | `cjpegli` | jpegli JPEG encoder (pinned, see below) | [libjxl/libjxl](https://github.com/libjxl/libjxl) |
-| `bestsource` | VapourSynth source filter (FFmpeg-based) | [vapoursynth/bestsource](https://github.com/vapoursynth/bestsource) |
-| `vship-nvidia` | VapourSynth GPU metrics plugin (CUDA build) | [Line-fr/Vship](https://codeberg.org/Line-fr/Vship) |
+| `vp-bestsource` | VapourSynth source filter (FFmpeg-based) | [vapoursynth/bestsource](https://github.com/vapoursynth/bestsource) |
+| `vp-vship` | VapourSynth GPU metrics plugin (CUDA build) | [Line-fr/Vship](https://codeberg.org/Line-fr/Vship) |
 | `bg3mm` | Baldur's Gate 3 mod manager | [LaughingLeader/BG3ModManager](https://github.com/LaughingLeader/BG3ModManager) |
 | `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
 | `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
 | `xdoc2txt` | Extract plain text from PDF/Office/RTF documents | [ebstudio.info](https://ebstudio.info/home/xdoc2txt.html) |
 
-`bestsource` and `vship-nvidia` are VapourSynth plugins, not programs. The DLL stays
+`vp-bestsource` and `vp-vship` are VapourSynth plugins, not programs. The DLL stays
 inside the package directory - link it into your plugin path yourself. Both keep a
 stable file name, so a link to `...\apps\<name>\current\<name>.dll` survives updates.
 

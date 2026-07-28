@@ -17,7 +17,7 @@
     },
     "notes": [
         "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself.",
-        "Upstream names the file after the release (BestSource-R20-win64-clang-vs-only.dll); it is renamed to BestSource.dll so a link to ...\\apps\\bestsource\\current\\BestSource.dll keeps working across updates.",
+        "Upstream names the file after the release (BestSource-R20-win64-clang-vs-only.dll); it is renamed to BestSource.dll so a link to ...\\apps\\vp-bestsource\\current\\BestSource.dll keeps working across updates.",
         "This packages the clang 'vs-only' build. If you also need AviSynth+, switch the url to BestSource-$version-win64-msvc.zip.",
         "R20 needs VapourSynth R78 or newer (it uses the new turn functions for rotation)."
     ]

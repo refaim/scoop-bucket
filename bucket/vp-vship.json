@@ -17,7 +17,7 @@
     },
     "notes": [
         "This is the CUDA build - it needs an NVIDIA GPU. AMD (HIP) and Vulkan builds exist upstream as separate assets.",
-        "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself. Upstream keeps the file name stable, so ...\\apps\\vship-nvidia\\current\\libvship_NVIDIA.dll survives updates as a link target.",
+        "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself. Upstream keeps the file name stable, so ...\\apps\\vp-vship\\current\\libvship_NVIDIA.dll survives updates as a link target.",
         "Upstream also ships FFVship, a standalone CLI for the same metrics - not included here."
     ]
 }
