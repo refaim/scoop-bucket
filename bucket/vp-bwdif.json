@@ -1,0 +1,25 @@
+{
+    "version": "5.1",
+    "description": "Bwdif - motion adaptive deinterlacing filter (FFmpeg's bwdif) as a VapourSynth plugin",
+    "homepage": "https://github.com/HolyWu/VapourSynth-Bwdif",
+    "license": "LGPL-3.0-or-later",
+    "url": "https://files.pythonhosted.org/packages/ef/7a/e69a8271c254b5ec5cfcfcba2674de75263ed1e3ddaa05476df547c9fda6/vapoursynth_bwdif-5.1-py3-none-win_amd64.whl#/bwdif.zip",
+    "hash": "4eb1fc68dd7d53f175b5522d5e435a0a48ab4bf178a20b50b9104e9db888eadd",
+    "extract_dir": "vapoursynth\\plugins",
+    "checkver": {
+        "url": "https://pypi.org/pypi/vapoursynth-bwdif/json",
+        "regex": "\"url\":\"(?<url>https://files\\.pythonhosted\\.org/packages/[^\"]+/vapoursynth_bwdif-(?<version>[\\d.]+)-py3-none-win_amd64\\.whl)\"",
+        "reverse": true
+    },
+    "autoupdate": {
+        "url": "$matchUrl#/bwdif.zip",
+        "hash": {
+            "url": "https://pypi.org/pypi/vapoursynth-bwdif/json",
+            "regex": "\"sha256\":\"(?<hash>[a-f0-9]{64})\"\\},\"downloads\":[^{]*vapoursynth_bwdif-$version-py3-none-win_amd64\\.whl"
+        }
+    },
+    "notes": [
+        "Since r5 upstream ships binaries only as PyPI wheels (a wheel is a zip) - this package unpacks the win_amd64 wheel and keeps just the DLL.",
+        "The DLL stays in the package directory - link it into your VapourSynth plugin path yourself. The file name is stable, so ...\\apps\\vp-bwdif\\current\\bwdif.dll survives updates as a link target."
+    ]
+}
