@@ -20,6 +20,7 @@ scoop install refaim/nvencc
 | `rawwritewin` | Write raw disk images to removable drives | [emeric-martineau/rawwritewin](https://github.com/emeric-martineau/rawwritewin) |
 | `ccd2iso` | Convert CloneCD .img images to .iso | [jkmartindale/ccd2iso](https://github.com/jkmartindale/ccd2iso) |
 | `xdoc2txt` | Extract plain text from PDF/Office/RTF documents | [ebstudio.info](https://ebstudio.info/home/xdoc2txt.html) |
+| `coolreader` | CoolReader 3 e-book reader (pinned, see below) | [crengine](https://sourceforge.net/projects/crengine/) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -29,6 +30,10 @@ updates.
 `cjpegli` is pinned to libjxl v0.11.2 and has no `checkver`: v0.12.0 dropped
 `cjpegli.exe` from every Windows archive, so an automatic bump would install a build
 without the tool.
+
+`coolreader` is pinned to 3.1.2-49, the last Windows build upstream ever produced
+(October 2014). Every newer CoolReader release is Android-only, so there is nothing
+for `checkver` to find.
 
 ## Updates
 

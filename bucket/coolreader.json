@@ -1,0 +1,20 @@
+{
+    "version": "3.1.2-49",
+    "description": "CoolReader 3 - e-book reader for FB2, EPUB, MOBI, RTF, TXT and more (Qt desktop build)",
+    "homepage": "https://sourceforge.net/projects/crengine/",
+    "license": "GPL-2.0-or-later",
+    "url": "https://downloads.sourceforge.net/project/crengine/CoolReader3/cr3-3.1.2/cr3-3.1.2-49-win32.zip",
+    "hash": "459f145aa71b9ac8113b112f554dd127ee3cd6e95079cb034540796215b02d09",
+    "extract_dir": "cr3",
+    "bin": "cr3.exe",
+    "shortcuts": [
+        [
+            "cr3.exe",
+            "CoolReader 3"
+        ]
+    ],
+    "notes": [
+        "Pinned to 3.1.2-49, the last Windows build upstream ever made (October 2014) - newer CoolReader releases (3.2.x on SourceForge/GitHub) are Android-only.",
+        "No checkver on purpose: an automatic bump could never find a Windows asset."
+    ]
+}
