@@ -1,0 +1,28 @@
+{
+    "version": "0.3.8",
+    "description": "Codex Minibar - Windows tray companion for monitoring ChatGPT Work/Codex usage limits",
+    "homepage": "https://github.com/vertopolkaLF/codex-minibar",
+    "license": "Apache-2.0",
+    "url": "https://github.com/vertopolkaLF/codex-minibar/releases/download/0.3.8/codex-minibar-0.3.8-x64-portable.zip",
+    "hash": "7697e45516ed1ab64eb53e2022f5688b6e104031fffdae637e4ce6701e1d5a5d",
+    "extract_dir": "codex-minibar-0.3.8-x64",
+    "pre_install": "New-Item \"$env:APPDATA\\Codex Minibar\\Codex Minibar\\config\" -ItemType Directory -Force | Out-Null",
+    "shortcuts": [
+        [
+            "codex-minibar.exe",
+            "Codex Minibar"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/vertopolkaLF/codex-minibar/releases/latest",
+        "regex": "download/(?<version>[\\d.]+)/codex-minibar-[\\d.]+-x64-portable\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/vertopolkaLF/codex-minibar/releases/download/$version/codex-minibar-$version-x64-portable.zip",
+        "extract_dir": "codex-minibar-$version-x64"
+    },
+    "notes": [
+        "First-run workaround: the app crashes when its config folder is missing ('The system cannot find the path specified (os error 3)'), so install pre-creates %APPDATA%\\Codex Minibar\\Codex Minibar\\config.",
+        "Settings, provider store and logs live in that AppData folder - they survive updates and are NOT removed on uninstall."
+    ]
+}

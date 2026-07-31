@@ -23,6 +23,7 @@ scoop install refaim/nvencc
 | `coolreader` | CoolReader 3 e-book reader (pinned, see below) | [crengine](https://sourceforge.net/projects/crengine/) |
 | `scanner` | Sunburst disk space visualizer (pinned, see below) | [steffengerlach.de](http://www.steffengerlach.de/freeware/) |
 | `vdf` | Video Duplicate Finder GUI (rolling nightly) | [0x90d/videoduplicatefinder](https://github.com/0x90d/videoduplicatefinder) |
+| `codex-minibar` | Tray monitor for ChatGPT/Codex usage limits | [vertopolkaLF/codex-minibar](https://github.com/vertopolkaLF/codex-minibar) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
