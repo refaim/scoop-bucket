@@ -1,0 +1,23 @@
+{
+    "version": "4.4.9.11",
+    "description": "BinSkim - Microsoft's binary static analysis tool checking PE/ELF binaries for security hardening",
+    "homepage": "https://github.com/microsoft/binskim",
+    "license": "MIT",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.binskim/4.4.9.11/microsoft.codeanalysis.binskim.4.4.9.11.nupkg#/binskim.zip",
+    "hash": "69678989cbc273b5b50fcf98fb0fd978e1e35a3f844acb24254b31f0ce90c447",
+    "extract_dir": "tools\\net9.0\\win-x64",
+    "bin": "BinSkim.exe",
+    "checkver": {
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.binskim/index.json",
+        "regex": "\"(?<version>[\\d.]+)\"",
+        "reverse": true
+    },
+    "autoupdate": {
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.binskim/$version/microsoft.codeanalysis.binskim.$version.nupkg#/binskim.zip"
+    },
+    "notes": [
+        "Packaged from the official NuGet package (a nupkg is a zip) - only the self-contained win-x64 payload is extracted, so no .NET runtime is needed.",
+        "The payload path embeds the target framework (currently tools\\net9.0\\win-x64). When upstream moves to a newer TFM, install will fail loudly - bump extract_dir in the manifest then.",
+        "checkver watches the NuGet version index rather than GitHub releases: the nupkg is what gets downloaded, and a version listed there is guaranteed to have it."
+    ]
+}

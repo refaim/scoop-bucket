@@ -24,6 +24,7 @@ scoop install refaim/nvencc
 | `scanner` | Sunburst disk space visualizer (pinned, see below) | [steffengerlach.de](http://www.steffengerlach.de/freeware/) |
 | `vdf` | Video Duplicate Finder GUI (rolling nightly) | [0x90d/videoduplicatefinder](https://github.com/0x90d/videoduplicatefinder) |
 | `codex-minibar` | Tray monitor for ChatGPT/Codex usage limits | [vertopolkaLF/codex-minibar](https://github.com/vertopolkaLF/codex-minibar) |
+| `binskim` | Binary security static analysis (PE/ELF) | [microsoft/binskim](https://github.com/microsoft/binskim) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -52,11 +53,13 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Three exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Four exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
-taken from the GitHub release API and every date bump re-hashes the same URL.
+taken from the GitHub release API and every date bump re-hashes the same URL;
+`binskim` (binaries ship only on NuGet) watches the NuGet version index, which is
+the same feed the nupkg is downloaded from.
 
 Check a single manifest locally against upstream:
 
