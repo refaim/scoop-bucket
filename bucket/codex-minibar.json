@@ -1,11 +1,11 @@
 {
-    "version": "0.3.8",
+    "version": "0.3.9",
     "description": "Codex Minibar - Windows tray companion for monitoring ChatGPT Work/Codex usage limits",
     "homepage": "https://github.com/vertopolkaLF/codex-minibar",
     "license": "Apache-2.0",
-    "url": "https://github.com/vertopolkaLF/codex-minibar/releases/download/0.3.8/codex-minibar-0.3.8-x64-portable.zip",
-    "hash": "7697e45516ed1ab64eb53e2022f5688b6e104031fffdae637e4ce6701e1d5a5d",
-    "extract_dir": "codex-minibar-0.3.8-x64",
+    "url": "https://github.com/vertopolkaLF/codex-minibar/releases/download/0.3.9/codex-minibar-0.3.9-x64-portable.zip",
+    "hash": "2343222b28624090fa684230f9eeea968c1f6be79b7e8242e0e98560e6b23611",
+    "extract_dir": "codex-minibar-0.3.9-x64",
     "pre_install": "New-Item \"$env:APPDATA\\Codex Minibar\\Codex Minibar\\config\" -ItemType Directory -Force | Out-Null",
     "shortcuts": [
         [
