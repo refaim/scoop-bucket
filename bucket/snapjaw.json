@@ -1,0 +1,21 @@
+{
+    "version": "2026.04.25.14",
+    "description": "Git-based World of Warcraft AddOn manager for Vanilla and WotLK 3.3.5",
+    "homepage": "https://github.com/refaim/snapjaw",
+    "license": "GPL-3.0-or-later",
+    "url": "https://github.com/refaim/snapjaw/releases/download/2026.04.25.14/snapjaw-2026.04.25.14-windows-x86_64.zip",
+    "hash": "658abc6c91caceb4491e28fbdb7f1b8e6598a11577f158c390d80654083d467c",
+    "extract_dir": "snapjaw",
+    "bin": "snapjaw.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/refaim/snapjaw/releases/latest",
+        "regex": "download/(?<version>[\\d.]+)/snapjaw-[\\d.]+-windows-x86_64\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/refaim/snapjaw/releases/download/$version/snapjaw-$version-windows-x86_64.zip"
+    },
+    "notes": [
+        "Run snapjaw from the WoW directory, or pass --addons-dir <path-to-Interface\\AddOns>.",
+        "Existing AddOns must be reinstalled with 'snapjaw install' once so Snapjaw can create its tracking index."
+    ]
+}
