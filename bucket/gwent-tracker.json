@@ -1,0 +1,28 @@
+{
+    "version": "1.5.1",
+    "description": "Track Gwent card collection progress from The Witcher 3 save files",
+    "homepage": "https://github.com/rfvgyhn/gwent-tracker",
+    "license": "MIT",
+    "url": "https://github.com/rfvgyhn/gwent-tracker/releases/download/v1.5.1/gwent-tracker_v1.5.1_win-x64.zip",
+    "hash": "fc8abd0ac1ab2797cd557b7d9128bdfd322b3e84236e8441e22bb13ae07e9377",
+    "extract_dir": "gwent-tracker_v1.5.1_win-x64",
+    "persist": [
+        "settings.ini",
+        "textures"
+    ],
+    "shortcuts": [
+        [
+            "GwentTracker.exe",
+            "Gwent Tracker"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/rfvgyhn/gwent-tracker/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/gwent-tracker_v[\\d.]+_win-x64\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/rfvgyhn/gwent-tracker/releases/download/v$version/gwent-tracker_v$version_win-x64.zip",
+        "extract_dir": "gwent-tracker_v$version_win-x64"
+    },
+    "notes": "Settings and downloaded card textures are persisted across updates."
+}

@@ -26,6 +26,7 @@ scoop install refaim/nvencc
 | `codex-minibar` | Tray monitor for ChatGPT/Codex usage limits | [vertopolkaLF/codex-minibar](https://github.com/vertopolkaLF/codex-minibar) |
 | `binskim` | Binary security static analysis (PE/ELF) | [microsoft/binskim](https://github.com/microsoft/binskim) |
 | `snapjaw` | Git-based WoW AddOn manager for Vanilla and WotLK 3.3.5 | [refaim/snapjaw](https://github.com/refaim/snapjaw) |
+| `gwent-tracker` | Track Gwent card collection progress from The Witcher 3 saves | [rfvgyhn/gwent-tracker](https://github.com/rfvgyhn/gwent-tracker) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
