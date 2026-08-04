@@ -1,0 +1,21 @@
+{
+    "version": "1.20.4",
+    "description": "LSLib Divine CLI for manipulating Divinity: Original Sin and Baldur's Gate 3 files",
+    "homepage": "https://github.com/Norbyte/lslib",
+    "license": "MIT",
+    "url": "https://github.com/Norbyte/lslib/releases/download/v1.20.4/ExportTool-v1.20.4.zip",
+    "hash": "5e02368fb8acafda9b45acba37a3f3bf507fc3d65a083a159abbeab06337190e",
+    "extract_dir": "Packed",
+    "bin": "Tools\\Divine.exe",
+    "checkver": {
+        "url": "https://api.github.com/repos/Norbyte/lslib/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/ExportTool-v[\\d.]+\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Norbyte/lslib/releases/download/v$version/ExportTool-v$version.zip"
+    },
+    "notes": [
+        "Requires the .NET 8 Runtime (Microsoft.NETCore.App 8.x).",
+        "Only Divine.exe is shimmed; the other LSLib tools remain inside the package directory."
+    ]
+}
