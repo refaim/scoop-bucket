@@ -1,0 +1,45 @@
+{
+    "version": "1.55",
+    "description": "BlueScreenView - read the crash dumps left by blue screens and show the bug check code plus the drivers on the stack",
+    "homepage": "https://www.nirsoft.net/utils/blue_screen_view.html",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.nirsoft.net/utils/bluescreenview-x64.zip",
+            "hash": "df57d4c9418dd2771035f2f7b70952caeb20d2269af683a0ab0665125c821479"
+        },
+        "32bit": {
+            "url": "https://www.nirsoft.net/utils/bluescreenview.zip",
+            "hash": "15ba3b0ca0a1ff21e89715da52ecc5918177b97ce40903d299fd591909e7b3ab"
+        }
+    },
+    "pre_install": "if (!(Test-Path \"$persist_dir\\BlueScreenView.cfg\")) { New-Item \"$dir\\BlueScreenView.cfg\" -ItemType File | Out-Null }",
+    "persist": "BlueScreenView.cfg",
+    "bin": "BlueScreenView.exe",
+    "shortcuts": [
+        [
+            "BlueScreenView.exe",
+            "BlueScreenView"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.nirsoft.net/pad/bluescreenview.xml",
+        "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.nirsoft.net/utils/bluescreenview-x64.zip"
+            },
+            "32bit": {
+                "url": "https://www.nirsoft.net/utils/bluescreenview.zip"
+            }
+        }
+    },
+    "notes": [
+        "The app auto-elevates: every launch raises a UAC prompt, because reading C:\\Windows\\Minidump needs administrator rights.",
+        "Settings go to BlueScreenView.cfg next to the exe, written when the window closes - pre-created as an empty file so scoop persists it as a file, not a directory junction.",
+        "A translation file (BlueScreenView.exe /savelangfile writes BlueScreenView_lng.ini) is deliberately not persisted: an empty placeholder would be loaded as an empty translation and blank out the UI.",
+        "Last release is 1.55 (January 2015) - it still reads modern minidumps, but do not expect further updates. checkver watches the PAD manifest anyway, since the download URLs carry no version."
+    ]
+}

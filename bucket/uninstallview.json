@@ -1,0 +1,45 @@
+{
+    "version": "1.52",
+    "description": "UninstallView - collect the installed-program entries scattered across the registry into one list and uninstall from it",
+    "homepage": "https://www.nirsoft.net/utils/uninstall_view.html",
+    "license": "Freeware",
+    "architecture": {
+        "64bit": {
+            "url": "https://www.nirsoft.net/utils/uninstallview-x64.zip",
+            "hash": "9d6835be4d7afccafd7a7ce945b057537dfe3e638f4f52f0fe359b1bd7aa8836"
+        },
+        "32bit": {
+            "url": "https://www.nirsoft.net/utils/uninstallview.zip",
+            "hash": "62a42ba931f247d3a78e5467bf7e5539c8c0f83d204dc4c8ac8a624c245bd72a"
+        }
+    },
+    "pre_install": "if (!(Test-Path \"$persist_dir\\UninstallView.cfg\")) { New-Item \"$dir\\UninstallView.cfg\" -ItemType File | Out-Null }",
+    "persist": "UninstallView.cfg",
+    "bin": "UninstallView.exe",
+    "shortcuts": [
+        [
+            "UninstallView.exe",
+            "UninstallView"
+        ]
+    ],
+    "checkver": {
+        "url": "https://www.nirsoft.net/pad/uninstallview.xml",
+        "xpath": "/XML_DIZ_INFO/Program_Info/Program_Version"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://www.nirsoft.net/utils/uninstallview-x64.zip"
+            },
+            "32bit": {
+                "url": "https://www.nirsoft.net/utils/uninstallview.zip"
+            }
+        }
+    },
+    "notes": [
+        "Runs unelevated by default - Ctrl+F11 (or /RunAsAdmin) restarts it as administrator, which is what the HKLM-wide and shadow-copy views need.",
+        "Settings go to UninstallView.cfg next to the exe, written when the window closes - pre-created as an empty file so scoop persists it as a file, not a directory junction.",
+        "A translation file (UninstallView.exe /savelangfile writes uninstallview_lng.ini) is deliberately not persisted: an empty placeholder would be loaded as an empty translation and blank out the UI.",
+        "The download URLs carry no version, so checkver watches the PAD manifest and every version bump re-hashes the same two zips."
+    ]
+}
