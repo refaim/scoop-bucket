@@ -28,6 +28,8 @@ scoop install refaim/nvencc
 | `snapjaw` | Git-based WoW AddOn manager for Vanilla and WotLK 3.3.5 | [refaim/snapjaw](https://github.com/refaim/snapjaw) |
 | `gwent-tracker` | Track Gwent card collection progress from The Witcher 3 saves | [rfvgyhn/gwent-tracker](https://github.com/rfvgyhn/gwent-tracker) |
 | `divine` | LSLib CLI for Divinity: Original Sin and Baldur's Gate 3 files | [Norbyte/lslib](https://github.com/Norbyte/lslib) |
+| `hdr10plus_tool` | HDR10+ metadata CLI (extract, inject, convert) | [quietvoid/hdr10plus_tool](https://github.com/quietvoid/hdr10plus_tool) |
+| `shellmenuview` | Disable unwanted static Explorer context-menu items | [nirsoft.net](https://www.nirsoft.net/utils/shell_menu_view.html) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -46,6 +48,12 @@ for `checkver` to find.
 HTTP-only and upstream has been dormant ever since, so the fixed hash is the whole
 integrity story.
 
+`shellmenuview` also exists in the official
+[ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft) bucket as
+`shmnview` (named after the exe, not the product). This copy persists `shmnview.cfg`
+through a `pre_install` that pre-creates the file, so scoop links a file rather than
+turning the missing config into a directory junction.
+
 ## Updates
 
 The `Excavator` workflow runs every 6 hours: it checks upstream for new releases,
@@ -56,13 +64,15 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Four exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Five exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
 taken from the GitHub release API and every date bump re-hashes the same URL;
 `binskim` (binaries ship only on NuGet) watches the NuGet version index, which is
-the same feed the nupkg is downloaded from.
+the same feed the nupkg is downloaded from; `shellmenuview` reads the version out of
+NirSoft's PAD manifest, since the two download URLs are versionless and only their
+hashes change.
 
 Check a single manifest locally against upstream:
 
