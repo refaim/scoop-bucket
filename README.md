@@ -30,6 +30,7 @@ scoop install refaim/nvencc
 | `divine` | LSLib CLI for Divinity: Original Sin and Baldur's Gate 3 files | [Norbyte/lslib](https://github.com/Norbyte/lslib) |
 | `hdr10plus_tool` | HDR10+ metadata CLI (extract, inject, convert) | [quietvoid/hdr10plus_tool](https://github.com/quietvoid/hdr10plus_tool) |
 | `shellmenuview` | Disable unwanted static Explorer context-menu items | [nirsoft.net](https://www.nirsoft.net/utils/shell_menu_view.html) |
+| `shellexview` | List and disable installed shell extensions | [nirsoft.net](https://www.nirsoft.net/utils/shexview.html) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -48,11 +49,13 @@ for `checkver` to find.
 HTTP-only and upstream has been dormant ever since, so the fixed hash is the whole
 integrity story.
 
-`shellmenuview` also exists in the official
-[ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft) bucket as
-`shmnview` (named after the exe, not the product). This copy persists `shmnview.cfg`
-through a `pre_install` that pre-creates the file, so scoop links a file rather than
-turning the missing config into a directory junction.
+`shellmenuview` and `shellexview` also exist in the official
+[ScoopInstaller/Nirsoft](https://github.com/ScoopInstaller/Nirsoft) bucket, named
+after their exes (`shmnview`, `shexview`) rather than the products. These copies
+persist the `.cfg` through a `pre_install` that pre-creates the file, so scoop links
+a file rather than turning the missing config into a directory junction. The
+`*_lng.ini` translation file is left unpersisted on purpose: it only exists once you
+run `/savelangfile`, and an empty placeholder would load as an empty translation.
 
 ## Updates
 
@@ -64,15 +67,15 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Five exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Six exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
 taken from the GitHub release API and every date bump re-hashes the same URL;
 `binskim` (binaries ship only on NuGet) watches the NuGet version index, which is
-the same feed the nupkg is downloaded from; `shellmenuview` reads the version out of
-NirSoft's PAD manifest, since the two download URLs are versionless and only their
-hashes change.
+the same feed the nupkg is downloaded from; `shellmenuview` and `shellexview` read
+the version out of NirSoft's PAD manifest, since their download URLs are versionless
+and only the hashes change.
 
 Check a single manifest locally against upstream:
 
