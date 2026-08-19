@@ -1,13 +1,11 @@
 {
-    "version": "R20",
+    "version": "R21",
     "description": "BestSource - FFmpeg-based audio/video source filter for VapourSynth with exact frame-accurate seeking",
     "homepage": "https://github.com/vapoursynth/bestsource",
     "license": "MIT",
-    "url": "https://github.com/vapoursynth/bestsource/releases/download/R20/BestSource-R20-win64-clang-vs-only.zip",
-    "hash": "3bce2a4ea97ae3ce0d781094733ec653fe1bfcaa88f344f5f557a8deed8ab3d6",
-    "post_install": [
-        "Get-ChildItem \"$dir\\*.dll\" | Rename-Item -NewName 'BestSource.dll'"
-    ],
+    "url": "https://github.com/vapoursynth/bestsource/releases/download/R21/BestSource-R21-win64-clang-vs-only.zip",
+    "hash": "98e21e84c47bc01f08f0fdfbf38f4189449fa905be18eba0ad5a7a2cdb1ea1d0",
+    "post_install": "Get-ChildItem \"$dir\\*.dll\" | Rename-Item -NewName 'BestSource.dll'",
     "checkver": {
         "url": "https://api.github.com/repos/vapoursynth/bestsource/releases/latest",
         "regex": "download/(?<version>R\\d+)/BestSource-R\\d+-win64-clang-vs-only\\.zip"
