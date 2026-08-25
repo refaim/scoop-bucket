@@ -1,13 +1,13 @@
 {
-    "version": "5.1.0",
+    "version": "5.1.1",
     "description": "Vship (NVIDIA/CUDA build) - GPU-accelerated SSIMULACRA2, Butteraugli and CVVDP metrics as a VapourSynth plugin",
     "homepage": "https://codeberg.org/Line-fr/Vship",
     "license": {
         "identifier": "MIT-NON-AI",
         "url": "https://codeberg.org/Line-fr/Vship/src/branch/main/LICENSE"
     },
-    "url": "https://codeberg.org/Line-fr/Vship/releases/download/v5.1.0/libvship_NVIDIA.zip",
-    "hash": "ed8f568ca47de49846c3b9ccc3309264e84ffedb6c54ac8b6f5146a8b33b74b8",
+    "url": "https://codeberg.org/Line-fr/Vship/releases/download/v5.1.1/libvship_NVIDIA.zip",
+    "hash": "9626a589267e68b6e1882e39cf6a1550b3d56d11557ba001cc2d26bf01fd48f8",
     "checkver": {
         "url": "https://codeberg.org/api/v1/repos/Line-fr/Vship/releases/latest",
         "regex": "download/v(?<version>[\\d.]+)/libvship_NVIDIA\\.zip"
