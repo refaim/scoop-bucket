@@ -1,0 +1,29 @@
+{
+    "version": "0.18.0",
+    "description": "Numi - text calculator where sums are written as plain sentences (units, currencies, dates, percentages)",
+    "homepage": "https://numi.app",
+    "license": "Proprietary",
+    "url": "https://cdn.numi.app/electron/win32/x64/Numi-0.18.0-full.nupkg",
+    "hash": "74070020998bf05d9566a92793c6672dc7af6f7c1c48dd1dba8abfc33c47f529",
+    "extract_dir": "lib\\net45",
+    "shortcuts": [
+        [
+            "Numi.exe",
+            "Numi"
+        ]
+    ],
+    "checkver": {
+        "url": "https://cdn.numi.app/electron/win32/x64/RELEASES",
+        "regex": "Numi-(?<version>[\\d.]+)-full\\.nupkg",
+        "reverse": true
+    },
+    "autoupdate": {
+        "url": "https://cdn.numi.app/electron/win32/x64/Numi-$version-full.nupkg"
+    },
+    "notes": [
+        "Installs the app payload straight from Numi's own Squirrel update feed instead of numi-setup.exe from the site: the nupkg is the same build, carries a per-version URL and needs no nested unpacking of the installer.",
+        "checkver reads the last entry of that feed's RELEASES index, which is what the app itself asks for when it looks for an update.",
+        "In-app updates cannot work here - Squirrel's Update.exe lives outside the app folder and is deliberately not installed. Use 'scoop update numi'.",
+        "Notes, preferences and logs live in %APPDATA%\\Numi - they survive updates and are NOT removed on uninstall."
+    ]
+}

@@ -33,6 +33,7 @@ scoop install refaim/nvencc
 | `shellexview` | List and disable installed shell extensions | [nirsoft.net](https://www.nirsoft.net/utils/shexview.html) |
 | `uninstallview` | Every installed program from every registry hive in one list | [nirsoft.net](https://www.nirsoft.net/utils/uninstall_view.html) |
 | `bluescreenview` | Read blue screen crash dumps and blame the driver | [nirsoft.net](https://www.nirsoft.net/utils/blue_screen_view.html) |
+| `numi` | Text calculator - write the sum as a sentence, read the answer | [numi.app](https://numi.app) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -62,6 +63,14 @@ and settings survive an update. The `*_lng.ini` translation file is left unpersi
 on purpose: it only exists once you run `/savelangfile`, and an empty placeholder
 would load as an empty translation.
 
+`numi` is not installed from the `numi-setup.exe` the site links, but from the
+Squirrel update feed the app itself polls: the same build, shipped as a nupkg under a
+per-version URL, so every release gets its own hash and there is no installer to
+unpack a second time. In-app updates are dead by design - Squirrel's `Update.exe` is
+left out, so the app logs `Can not find Squirrel` once at startup and carries on;
+`scoop update numi` does the job instead. Notes and preferences live in
+`%APPDATA%\Numi` and are neither persisted nor removed on uninstall.
+
 ## Updates
 
 The `Excavator` workflow runs every 6 hours: it checks upstream for new releases,
@@ -72,7 +81,7 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Eight exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Nine exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
@@ -80,7 +89,9 @@ taken from the GitHub release API and every date bump re-hashes the same URL;
 `binskim` (binaries ship only on NuGet) watches the NuGet version index, which is
 the same feed the nupkg is downloaded from; the four NirSoft utilities read the
 version out of NirSoft's PAD manifest, since their download URLs are versionless and
-only the hashes change.
+only the hashes change; `numi` (the GitHub repo carries only the CLI and plugins,
+never the desktop app) takes the last line of the Squirrel `RELEASES` index, the same
+file the app reads when it checks for an update.
 
 Check a single manifest locally against upstream:
 
