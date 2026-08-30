@@ -1,10 +1,10 @@
 {
-    "version": "2026.08.30.20",
+    "version": "1.4.0",
     "description": "Git-based World of Warcraft AddOn manager for Vanilla and WotLK 3.3.5",
     "homepage": "https://github.com/refaim/snapjaw",
     "license": "GPL-3.0-or-later",
-    "url": "https://github.com/refaim/snapjaw/releases/download/2026.08.30.20/snapjaw-2026.08.30.20-windows-x86_64.zip",
-    "hash": "a09b9825f903b8145662cbb75065781a859fb28ceb33a19d125004d11c887101",
+    "url": "https://github.com/refaim/snapjaw/releases/download/1.4.0/snapjaw-1.4.0-windows-x86_64.zip",
+    "hash": "e00196027a23e2b4ec3d43526683ef4a0f23348616aeca8f125bb01d1f937640",
     "extract_dir": "snapjaw",
     "bin": "snapjaw.exe",
     "checkver": {
