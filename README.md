@@ -34,6 +34,7 @@ scoop install refaim/nvencc
 | `uninstallview` | Every installed program from every registry hive in one list | [nirsoft.net](https://www.nirsoft.net/utils/uninstall_view.html) |
 | `bluescreenview` | Read blue screen crash dumps and blame the driver | [nirsoft.net](https://www.nirsoft.net/utils/blue_screen_view.html) |
 | `numi` | Text calculator - write the sum as a sentence, read the answer | [numi.app](https://numi.app) |
+| `ffmpeg8-shared` | FFmpeg 8.x shared libraries (pinned, see below) - dependency of `vdf` | [GyanD/codexffmpeg](https://github.com/GyanD/codexffmpeg) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -51,6 +52,19 @@ for `checkver` to find.
 `scanner` is pinned to 2.13 (July 2012): the download URL is versionless, the site is
 HTTP-only and upstream has been dormant ever since, so the fixed hash is the whole
 integrity story.
+
+`ffmpeg8-shared` is pinned to the FFmpeg 8.x series and exists only so `vdf` can keep
+its fast native FFmpeg binding. `VDF.Core` pins `FFmpeg.AutoGen 8.1.0`, which
+P/Invokes `avcodec-62.dll`, `avutil-60.dll` and `avformat-62.dll` by name, while
+`main/ffmpeg-shared` has moved to 9.x - `avcodec-63`, `avutil-61`, `avformat-63`. It
+declares no `env_add_path`, no `env_set` and no shims, so it never fights
+`main/ffmpeg-shared` over the `ffmpeg.exe` shim or `FFMPEG_DIR` and the two coexist;
+only apps reaching into `...\apps\ffmpeg8-shared\current\bin` themselves see it.
+Install it for a general-purpose ffmpeg and you will get nothing on your PATH. A
+mismatch is not fatal either way: VDF probes its `bin` for the exact file names,
+turns the native binding off when they are missing and scans through the slower
+`ffmpeg.exe` process path. Retire the manifest once upstream VDF moves to a 9.x
+binding - `vdf` already prefers this package but falls back to `main/ffmpeg-shared`.
 
 The four NirSoft utilities - `shellmenuview`, `shellexview`, `uninstallview` and
 `bluescreenview` - also exist in the official
@@ -81,7 +95,7 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Nine exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Ten exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
@@ -91,7 +105,10 @@ the same feed the nupkg is downloaded from; the four NirSoft utilities read the
 version out of NirSoft's PAD manifest, since their download URLs are versionless and
 only the hashes change; `numi` (the GitHub repo carries only the CLI and plugins,
 never the desktop app) takes the last line of the Squirrel `RELEASES` index, the same
-file the app reads when it checks for an update.
+file the app reads when it checks for an update; `ffmpeg8-shared` deliberately walks
+the whole release list instead of `/releases/latest`, since latest is 9.x, and only
+accepts an 8.x shared asset - once 8.x scrolls off that page of 100 the match simply
+stops and the version stays put, which is the safe failure.
 
 Check a single manifest locally against upstream:
 

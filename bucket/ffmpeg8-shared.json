@@ -1,0 +1,31 @@
+{
+    "version": "8.1.2",
+    "description": "FFmpeg 8.x shared libraries (pinned, see below) - library-only dependency for vdf, adds nothing to PATH",
+    "homepage": "https://ffmpeg.org",
+    "license": "GPL-3.0-or-later",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/GyanD/codexffmpeg/releases/download/8.1.2/ffmpeg-8.1.2-full_build-shared.7z",
+            "hash": "cba748035c21ce1431d0823c7a3a711f38616f89f87a265dceddf9b7f6749d2d",
+            "extract_dir": "ffmpeg-8.1.2-full_build-shared"
+        }
+    },
+    "checkver": {
+        "url": "https://api.github.com/repos/GyanD/codexffmpeg/releases?per_page=100",
+        "regex": "download/(?<version>8\\.[\\d.]+)/ffmpeg-8\\.[\\d.]+-full_build-shared\\.7z"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/GyanD/codexffmpeg/releases/download/$version/ffmpeg-$version-full_build-shared.7z",
+                "extract_dir": "ffmpeg-$version-full_build-shared"
+            }
+        }
+    },
+    "notes": [
+        "Pinned to the 8.x series on purpose. This is not a general-purpose ffmpeg - install main/ffmpeg or main/ffmpeg-shared for that. It exists so vdf can keep using its fast native FFmpeg binding: VDF.Core pins FFmpeg.AutoGen 8.1.0, which P/Invokes avcodec-62.dll, avutil-60.dll and avformat-62.dll by name, and main/ffmpeg-shared has moved on to 9.x (avcodec-63, avutil-61, avformat-63).",
+        "Deliberately no env_add_path, no env_set and no shims, so it cannot collide with main/ffmpeg-shared over the ffmpeg.exe shim or the FFMPEG_DIR variable. Both can be installed side by side; only apps that reach into ...\\apps\\ffmpeg8-shared\\current\\bin themselves will see this copy.",
+        "checkver only ever matches an 8.x asset, so Excavator tracks 8.x point releases and never jumps to 9.x. It reads one page of 100 releases; upstream interleaves nightly git builds with numbered ones, so once 8.x scrolls off that page checkver simply stops matching and the version stays put - it can never bump to the wrong major.",
+        "Retire this manifest once upstream VDF bumps its FFmpeg.AutoGen reference to a 9.x binding: vdf's pre_install already prefers this package but falls back to main/ffmpeg-shared."
+    ]
+}

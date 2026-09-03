@@ -5,11 +5,13 @@
     "license": "AGPL-3.0",
     "url": "https://github.com/0x90d/videoduplicatefinder/releases/download/4.1.x/GUI-win-x64.zip",
     "hash": "25cb704b9645573f758041568411c6f8102caf6af8e0618c11b75801c3173065",
-    "depends": "main/ffmpeg-shared",
+    "depends": "refaim/ffmpeg8-shared",
     "pre_install": [
         "New-Item \"$persist_dir\\db\" -ItemType Directory -Force | Out-Null",
         "if (!(Test-Path \"$persist_dir\\Settings.json\")) { @{ CustomDatabaseFolder = \"$persist_dir\\db\"; UseNativeFfmpegBinding = $true } | ConvertTo-Json -Compress | Set-Content \"$dir\\Settings.json\" -NoNewline }",
-        "$ffbin = Join-Path (Split-Path (Split-Path $dir)) 'ffmpeg-shared\\current\\bin'; if (Test-Path (Join-Path $ffbin 'ffmpeg.exe')) { New-Item -ItemType Junction -Path \"$dir\\bin\" -Target $ffbin | Out-Null }"
+        "$apps = Split-Path (Split-Path $dir); $cands = @('ffmpeg8-shared', 'ffmpeg-shared') | ForEach-Object { Join-Path $apps \"$_\\current\\bin\" }",
+        "$ffbin = @(@($cands | Where-Object { Test-Path (Join-Path $_ 'avcodec-62.dll') }) + @($cands | Where-Object { Test-Path (Join-Path $_ 'ffmpeg.exe') }))[0]",
+        "if ($ffbin) { New-Item -ItemType Junction -Path \"$dir\\bin\" -Target $ffbin | Out-Null }"
     ],
     "post_install": "Remove-Item \"$dir\\*.pdb\" -Force -ErrorAction SilentlyContinue",
     "persist": [
@@ -32,7 +34,8 @@
     },
     "notes": [
         "Upstream ships rolling nightlies: the 4.1.x release assets are re-uploaded on every build, so the manifest version is the BUILD DATE of GUI-win-x64.zip. If upstream rebuilds on the same day after Excavator ran, the hash check fails until the next Excavator pass a few hours later.",
-        "ffmpeg comes from the ffmpeg-shared dependency: install drops a 'bin' junction pointing into ffmpeg-shared\\current\\bin, where VDF finds ffmpeg.exe, ffprobe.exe AND the shared avcodec DLLs (its <app>\\bin probe beats the PATH shims, which carry no DLLs). The seeded settings enable the native FFmpeg binding. Decline VDF's own ffmpeg download offer.",
+        "ffmpeg comes from the ffmpeg8-shared dependency: install drops a 'bin' junction pointing into its bin, where VDF finds ffmpeg.exe, ffprobe.exe AND the shared avcodec DLLs (its <app>\\bin probe beats the PATH shims, which carry no DLLs). The seeded settings enable the native FFmpeg binding. Decline VDF's own ffmpeg download offer.",
+        "The dependency is pinned to ffmpeg 8.x rather than main/ffmpeg-shared because VDF.Core pins FFmpeg.AutoGen 8.1.0, which P/Invokes avcodec-62.dll, avutil-60.dll and avformat-62.dll by name; main/ffmpeg-shared is on 9.x, whose libraries are avcodec-63, avutil-61 and avformat-63. pre_install junctions the first candidate that actually carries avcodec-62.dll (ffmpeg8-shared, then main/ffmpeg-shared), falling back to whichever merely has ffmpeg.exe. A mismatched junction is not fatal: VDF's own FFmpegHelper.CanLoadNativeLibraries probe fails on the missing file names, the native binding switches off for the session, and scanning continues through the slower ffmpeg.exe process path.",
         "The scan database survives updates: on first install the seeded settings point VDF's custom database folder at ~\\scoop\\persist\\vdf\\db (a plain hardlink persist would break - VDF replaces the db file on every save). Do not clear the 'custom database folder' field in VDF settings, or the database falls back to the app dir and dies with the next update.",
         "The nightly zip carries ~260 MB of .pdb debug symbols - they are deleted after install.",
         "AI matching components (ONNX Runtime + DINOv2 model, ~37 MB) are downloaded by VDF on first use into the persisted 'ai' folder, so they survive updates."
