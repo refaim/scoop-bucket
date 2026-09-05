@@ -4,7 +4,7 @@
     "homepage": "https://github.com/0x90d/videoduplicatefinder",
     "license": "AGPL-3.0",
     "url": "https://github.com/0x90d/videoduplicatefinder/releases/download/4.1.x/GUI-win-x64.zip",
-    "hash": "708888c905950d1f778f10580042d1560be8097745d61efcbddd620921a6e534",
+    "hash": "b5292d9857aa1424f4a5c07a208f5cc8ffda1d6a4bcc0a132217b2b52b5139f0",
     "depends": "refaim/ffmpeg8-shared",
     "pre_install": [
         "New-Item \"$persist_dir\\db\" -ItemType Directory -Force | Out-Null",
