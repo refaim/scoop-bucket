@@ -1,0 +1,32 @@
+{
+    "version": "4.5.18",
+    "description": "HermesProxy - connection proxy that lets modern WoW Classic clients play on legacy Vanilla/TBC/WotLK emulator cores (VMaNGOS, CMaNGOS, TrinityCore)",
+    "homepage": "https://github.com/Xian55/HermesProxy",
+    "license": "GPL-3.0-only",
+    "url": "https://github.com/Xian55/HermesProxy/releases/download/v4.5.18/HermesProxy-Windows-v4.5.18.zip",
+    "hash": "3bdf93dcc8431cdd6e7c4e1740558f69c0baece91f33fa341deb286604e1bddd",
+    "extract_dir": "HermesProxy-Windows-v4.5.18",
+    "pre_install": "Set-Content \"$dir\\hermesproxy.ps1\" -Value 'Push-Location $PSScriptRoot', 'try { & \"$PSScriptRoot\\HermesProxy.exe\" @args } finally { Pop-Location }'",
+    "bin": "hermesproxy.ps1",
+    "persist": [
+        "appsettings.json",
+        "AccountData"
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/Xian55/HermesProxy/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/HermesProxy-Windows-v[\\d.]+\\.zip"
+    },
+    "autoupdate": {
+        "url": "https://github.com/Xian55/HermesProxy/releases/download/v$version/HermesProxy-Windows-v$version.zip",
+        "hash": {
+            "url": "$baseurl/checksums-sha256.txt"
+        },
+        "extract_dir": "HermesProxy-Windows-v$version"
+    },
+    "notes": [
+        "This is the Xian55 fork, not WowLegacyCore/HermesProxy: the original has been dormant since v3.x (October 2023), the fork ships 4.x releases almost daily and adds WotLK Classic 3.4.3 -> 3.3.5a support. The proxy's own startup update check still polls the original repo, so it never fires here - scoop update is the update path.",
+        "The 'hermesproxy' command is not a shim of the exe: the proxy resolves appsettings.json, CSV\\ and everything it writes against the CURRENT DIRECTORY, not the exe location, so a plain shim dies with 'Configuration file not found' from anywhere but the app folder. Install writes a two-line hermesproxy.ps1 next to the exe that cd's into the app folder, runs HermesProxy.exe with your arguments and cd's back, and scoop shims that. The one side effect: a relative --config path is resolved against the app folder, so pass an absolute one.",
+        "appsettings.json is persisted as a hard link, so set ClientOptions:ClientBuild and LegacyServerOptions:Address/Port/Build right in the file next to the exe. Editors that rewrite the file in place (Notepad, VS Code) keep the link intact; one that saves via a temp file and rename splits it from the persisted copy and the edit is lost on the next update. When a release adds new keys the newer defaults land beside it as appsettings.json.original - diff the two, the persisted copy never picks them up on its own.",
+        "AccountData\\ is persisted too: per-account state the proxy keeps between sessions - last character, character list order, quests marked with !qcomplete, collection favorites and the account data cache. Logs\\ and PacketsLog\\ (binary .pkt captures of every packet, on by default via DiagnosticsOptions:PacketsLog) are deliberately not persisted; they pile up inside the version folder and go away with scoop cleanup."
+    ]
+}

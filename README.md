@@ -35,6 +35,7 @@ scoop install refaim/nvencc
 | `bluescreenview` | Read blue screen crash dumps and blame the driver | [nirsoft.net](https://www.nirsoft.net/utils/blue_screen_view.html) |
 | `numi` | Text calculator - write the sum as a sentence, read the answer | [numi.app](https://numi.app) |
 | `ffmpeg8-shared` | FFmpeg 8.x shared libraries (pinned, see below) - dependency of `vdf` | [GyanD/codexffmpeg](https://github.com/GyanD/codexffmpeg) |
+| `hermesproxy` | WoW connection proxy - modern Classic clients on legacy emulator cores (Xian55 fork) | [Xian55/HermesProxy](https://github.com/Xian55/HermesProxy) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -84,6 +85,16 @@ unpack a second time. In-app updates are dead by design - Squirrel's `Update.exe
 left out, so the app logs `Can not find Squirrel` once at startup and carries on;
 `scoop update numi` does the job instead. Notes and preferences live in
 `%APPDATA%\Numi` and are neither persisted nor removed on uninstall.
+
+`hermesproxy` packages the [Xian55](https://github.com/Xian55/HermesProxy) fork, not
+the dormant WowLegacyCore original. Its `hermesproxy` command is not a shim of the
+exe: `HermesProxy.exe` resolves `appsettings.json`, `CSV\` and everything it writes
+against the current directory, so a plain shim only works from inside the app
+folder. Install writes a two-line `hermesproxy.ps1` next to the exe that `cd`s into
+the app folder, runs the exe with your arguments and `cd`s back, and that script is
+what gets shimmed; give `--config` an absolute path. `appsettings.json` (the file
+you edit) and `AccountData\` (last character, `!qcomplete` quests, favorites) are
+persisted; `Logs\` and `PacketsLog\` are not.
 
 ## Updates
 
