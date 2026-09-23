@@ -1,0 +1,33 @@
+{
+    "version": "1.68.1",
+    "description": "iOpenPod - iTunes alternative for classic iPods: library sync with FLAC to ALAC auto-conversion, iTunesDB metadata editing and podcast syncing",
+    "homepage": "https://github.com/TheRealSavi/iOpenPod",
+    "license": "MIT",
+    "depends": [
+        "main/ffmpeg-shared",
+        "main/chromaprint"
+    ],
+    "url": "https://github.com/TheRealSavi/iOpenPod/releases/download/v1.68.1/iOpenPod-Windows.zip",
+    "hash": "643a0012cd72eeb42c25e80cb3d0f5cd474a64b3466d4cb6c3e826798d8edeb2",
+    "shortcuts": [
+        [
+            "iOpenPod.exe",
+            "iOpenPod"
+        ]
+    ],
+    "checkver": {
+        "url": "https://api.github.com/repos/TheRealSavi/iOpenPod/releases/latest",
+        "regex": "download/v(?<version>[\\d.]+)/iOpenPod-Windows\\.zip\""
+    },
+    "autoupdate": {
+        "url": "https://github.com/TheRealSavi/iOpenPod/releases/download/v$version/iOpenPod-Windows.zip",
+        "hash": {
+            "url": "$url.sha256"
+        }
+    },
+    "notes": [
+        "ffmpeg (transcoding, ffprobe) and fpcalc (Chromaprint audio fingerprints) come from the main/ffmpeg-shared and main/chromaprint dependencies; iOpenPod finds them on PATH (ffmpeg-shared adds its bin folder, chromaprint shims fpcalc). Leave the tool paths in its settings empty and decline its offer to download its own copies.",
+        "iOpenPod checks GitHub for a new release on every start and offers 'Download and Install', which overwrites the files in the scoop version folder behind scoop's back. Decline it and run 'scoop update iopenpod' instead.",
+        "Settings live in %APPDATA%\\iOpenPod, logs, backups and cache in ~\\iOpenPod - both outside the app folder, so they survive updates without persist and are NOT removed on uninstall."
+    ]
+}

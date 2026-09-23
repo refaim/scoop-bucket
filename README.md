@@ -36,6 +36,7 @@ scoop install refaim/nvencc
 | `numi` | Text calculator - write the sum as a sentence, read the answer | [numi.app](https://numi.app) |
 | `ffmpeg8-shared` | FFmpeg 8.x shared libraries (pinned, see below) - dependency of `vdf` | [GyanD/codexffmpeg](https://github.com/GyanD/codexffmpeg) |
 | `hermesproxy` | WoW connection proxy - modern Classic clients on legacy emulator cores (Xian55 fork) | [Xian55/HermesProxy](https://github.com/Xian55/HermesProxy) |
+| `iopenpod` | iTunes alternative for classic iPods - sync, FLAC to ALAC, iTunesDB editing | [TheRealSavi/iOpenPod](https://github.com/TheRealSavi/iOpenPod) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -95,6 +96,13 @@ the app folder, runs the exe with your arguments and `cd`s back, and that script
 what gets shimmed; give `--config` an absolute path. `appsettings.json` (the file
 you edit) and `AccountData\` (last character, `!qcomplete` quests, favorites) are
 persisted; `Logs\` and `PacketsLog\` are not.
+
+`iopenpod` depends on `main/ffmpeg-shared` and `main/chromaprint` and finds `ffmpeg`,
+`ffprobe` and `fpcalc` on PATH, so leave its tool paths empty and turn down its offer
+to download its own copies. It checks GitHub for a new release on every start and
+offers "Download and Install", which rewrites the version folder behind scoop's back -
+decline it and use `scoop update iopenpod`. Settings (`%APPDATA%\iOpenPod`) and data
+(`~\iOpenPod`) live outside the app folder and are left behind on uninstall.
 
 ## Updates
 
