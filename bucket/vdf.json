@@ -1,10 +1,10 @@
 {
-    "version": "2026.09.21",
+    "version": "2026.09.25",
     "description": "Video Duplicate Finder - find duplicate and similar videos or images by content (GUI)",
     "homepage": "https://github.com/0x90d/videoduplicatefinder",
     "license": "AGPL-3.0",
     "url": "https://github.com/0x90d/videoduplicatefinder/releases/download/4.1.x/GUI-win-x64.zip",
-    "hash": "ed1d70cebea817df76bb5712e9b7cf2a46eef49fbcd9b65d018369e3c98ed3ea",
+    "hash": "5a6c62a0622069b8f63f65996bdd6c02945a979333d57f9ea514e0e5a70db8b4",
     "depends": "refaim/ffmpeg8-shared",
     "pre_install": [
         "New-Item \"$persist_dir\\db\" -ItemType Directory -Force | Out-Null",
