@@ -28,8 +28,8 @@ jobs:
         uses: ScoopInstaller/GithubActions@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Test Bifrost release selection
+      - name: Test bucket manifests
         shell: powershell
         run: |
           Import-Module Pester -RequiredVersion 3.4.0
-          Invoke-Pester -Script ./tests/bifrost.Tests.ps1 -EnableExit
+          Invoke-Pester -Script ./tests -EnableExit

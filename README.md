@@ -38,6 +38,7 @@ scoop install refaim/nvencc
 | `hermesproxy` | WoW connection proxy - modern Classic clients on legacy emulator cores (Xian55 fork) | [Xian55/HermesProxy](https://github.com/Xian55/HermesProxy) |
 | `iopenpod` | iTunes alternative for classic iPods - sync, FLAC to ALAC, iTunesDB editing | [TheRealSavi/iOpenPod](https://github.com/TheRealSavi/iOpenPod) |
 | `bifrost` | AI gateway with an OpenAI-compatible API and built-in web UI (Windows x64) | [maximhq/bifrost](https://github.com/maximhq/bifrost) |
+| `freellmapi` | Desktop app and local OpenAI-compatible gateway with provider routing (Windows x64) | [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -104,6 +105,16 @@ to download its own copies. It checks GitHub for a new release on every start an
 offers "Download and Install", which rewrites the version folder behind scoop's back -
 decline it and use `scoop update iopenpod`. Settings (`%APPDATA%\iOpenPod`) and data
 (`~\iOpenPod`) live outside the app folder and are left behind on uninstall.
+
+`freellmapi` uses the official Windows x64 ZIP, with a Start menu shortcut and a
+`freellmapi` command. The ZIP has no NSIS uninstaller, so upstream disables its
+in-app installer; use `scoop update freellmapi`. Quit it through its tray menu before
+updating. Settings, the database, logs and the encryption key live in
+`%APPDATA%\FreeLLMAPI`, outside the version folder, and remain after uninstall. Back
+up that whole folder: the encrypted provider keys in the database need the separate
+encryption key too. `checkver` accepts only a stable release containing the Windows
+ZIP with the same version as its tag; auto-update reads that exact asset's SHA-256
+digest from the versioned GitHub release API.
 
 ## Updates
 
