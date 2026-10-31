@@ -1,0 +1,40 @@
+{
+    "version": "2.4.0",
+    "description": "Bifrost AI gateway with an OpenAI-compatible API and built-in web interface",
+    "homepage": "https://github.com/maximhq/bifrost",
+    "license": "Apache-2.0",
+    "architecture": {
+        "64bit": {
+            "url": "https://downloads.getmaxim.ai/bifrost/v2.4.0/windows/amd64/bifrost-http.exe",
+            "hash": "c23f4991fc62d4288c3eb823109a8a78b42a8ba62443035493087d1f490d1c52"
+        }
+    },
+    "bin": [
+        [
+            "bifrost-http.exe",
+            "bifrost"
+        ]
+    ],
+    "checkver": {
+        "github": "https://api.github.com/repos/maximhq/bifrost/releases?per_page=100",
+        "script": [
+            "$releases = ($page | ConvertFrom-Json) | Where-Object { $_.draft -eq $false -and $_.prerelease -eq $false -and $_.tag_name -cmatch '^transports/v[0-9]+\\.[0-9]+\\.[0-9]+$' }",
+            "$releases | ForEach-Object { [version]$_.tag_name.Substring(12) } | Where-Object { $_ -ge [version]$json.version } | Sort-Object -Descending | Select-Object -First 1 | ForEach-Object { $_.ToString() }"
+        ],
+        "regex": "^(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)$"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://downloads.getmaxim.ai/bifrost/v$version/windows/amd64/bifrost-http.exe",
+                "hash": {
+                    "url": "$url.sha256"
+                }
+            }
+        }
+    },
+    "notes": [
+        "Run bifrost to start the gateway, then open http://localhost:8080.",
+        "Configuration and databases are stored in %APPDATA%\\bifrost by default and survive updates and uninstall. Use -app-dir <path> to choose another directory."
+    ]
+}

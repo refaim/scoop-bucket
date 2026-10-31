@@ -6,9 +6,13 @@ on:
       - main
     paths:
       - 'bucket/**'
+      - 'tests/**'
+      - '.github/workflows/ci.yml'
   pull_request:
     paths:
       - 'bucket/**'
+      - 'tests/**'
+      - '.github/workflows/ci.yml'
   workflow_dispatch:
 
 permissions:
@@ -24,3 +28,8 @@ jobs:
         uses: ScoopInstaller/GithubActions@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Test Bifrost release selection
+        shell: powershell
+        run: |
+          Import-Module Pester -RequiredVersion 3.4.0
+          Invoke-Pester -Script ./tests/bifrost.Tests.ps1 -EnableExit

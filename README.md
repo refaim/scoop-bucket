@@ -37,6 +37,7 @@ scoop install refaim/nvencc
 | `ffmpeg8-shared` | FFmpeg 8.x shared libraries (pinned, see below) - dependency of `vdf` | [GyanD/codexffmpeg](https://github.com/GyanD/codexffmpeg) |
 | `hermesproxy` | WoW connection proxy - modern Classic clients on legacy emulator cores (Xian55 fork) | [Xian55/HermesProxy](https://github.com/Xian55/HermesProxy) |
 | `iopenpod` | iTunes alternative for classic iPods - sync, FLAC to ALAC, iTunesDB editing | [TheRealSavi/iOpenPod](https://github.com/TheRealSavi/iOpenPod) |
+| `bifrost` | AI gateway with an OpenAI-compatible API and built-in web UI (Windows x64) | [maximhq/bifrost](https://github.com/maximhq/bifrost) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -106,6 +107,13 @@ decline it and use `scoop update iopenpod`. Settings (`%APPDATA%\iOpenPod`) and 
 
 ## Updates
 
+`bifrost` packages the open-source HTTP gateway, including its built-in plugins and
+web UI, directly from the official versioned Windows x64 binary feed. Node.js is
+not required. Run `bifrost` and open <http://localhost:8080>; configuration and
+databases stay in `%APPDATA%\bifrost` unless you pass `-app-dir`. Install as
+`refaim/bifrost` to distinguish it from the unrelated Samsung firmware downloader
+in `extras/bifrost`. The separate Bifrost CLI and Enterprise edition are not included.
+
 The `Excavator` workflow runs every 6 hours: it checks upstream for new releases,
 rewrites `version` + `url`, recomputes the hash and commits back to `main`.
 No manual work required.
@@ -114,7 +122,7 @@ Every `checkver` for a GitHub-hosted app points at a `/releases/latest` endpoint
 which by definition returns the newest release that is neither a prerelease nor a
 draft - RC builds are never picked up. The regex matches the asset download URL
 rather than the tag, so a release is only accepted if it actually contains the file
-the manifest needs. Ten exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
+the manifest needs. Eleven exceptions: `xdoc2txt` (no GitHub) scrapes the x64 zip link
 off the ebstudio.info homepage; `vp-bwdif` (upstream ships binaries only as PyPI
 wheels since r5) queries the PyPI JSON API for the win_amd64 wheel URL and hash;
 `vdf` tracks a rolling nightly release, so its version is the asset's build date
@@ -127,7 +135,15 @@ never the desktop app) takes the last line of the Squirrel `RELEASES` index, the
 file the app reads when it checks for an update; `ffmpeg8-shared` deliberately walks
 the whole release list instead of `/releases/latest`, since latest is 9.x, and only
 accepts an 8.x shared asset - once 8.x scrolls off that page of 100 the match simply
-stops and the version stays put, which is the safe failure.
+stops and the version stays put, which is the safe failure; `bifrost` also reads the
+first 100 releases, but filters for non-draft, non-prerelease tags matching exactly
+`transports/vX.Y.Z`. It excludes Enterprise, plugin, CLI, SDK and Helm releases even
+when GitHub marks one of them as latest. A short checkver script sorts the matching
+versions numerically and rejects versions older than the manifest, so a maintenance
+release from an older branch cannot cause a downgrade. The hash comes from the
+versioned binary's `.sha256` file. If no eligible stable gateway release is on that
+page, no update is selected. Bifrost regression tests exercise the actual checkver
+script in CI.
 
 Check a single manifest locally against upstream:
 
