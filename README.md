@@ -39,6 +39,7 @@ scoop install refaim/nvencc
 | `iopenpod` | iTunes alternative for classic iPods - sync, FLAC to ALAC, iTunesDB editing | [TheRealSavi/iOpenPod](https://github.com/TheRealSavi/iOpenPod) |
 | `bifrost` | AI gateway with an OpenAI-compatible API and built-in web UI (Windows x64) | [maximhq/bifrost](https://github.com/maximhq/bifrost) |
 | `freellmapi` | Desktop app and local OpenAI-compatible gateway with provider routing (Windows x64) | [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) |
+| `ruffle` | Adobe Flash Player emulator for desktop SWF games and animations (Windows x64 + x86) | [ruffle-rs/ruffle](https://github.com/ruffle-rs/ruffle) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
