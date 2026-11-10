@@ -1,10 +1,10 @@
 {
-    "version": "4.4.9.13",
+    "version": "4.4.9.14",
     "description": "BinSkim - Microsoft's binary static analysis tool checking PE/ELF binaries for security hardening",
     "homepage": "https://github.com/microsoft/binskim",
     "license": "MIT",
-    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.binskim/4.4.9.13/microsoft.codeanalysis.binskim.4.4.9.13.nupkg#/binskim.zip",
-    "hash": "5862f1e2a0c36439520d69c4ced69ed5bd704c705020d7f110baa9dd46f72a2c",
+    "url": "https://api.nuget.org/v3-flatcontainer/microsoft.codeanalysis.binskim/4.4.9.14/microsoft.codeanalysis.binskim.4.4.9.14.nupkg#/binskim.zip",
+    "hash": "ea2f48ed02e6d7ff569614d0895b80c2669fbc261c8b386639de551af049bcf4",
     "extract_dir": "tools\\net9.0\\win-x64",
     "bin": "BinSkim.exe",
     "checkver": {
