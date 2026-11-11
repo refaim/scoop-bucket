@@ -1,11 +1,11 @@
 {
-    "version": "4.7.6",
+    "version": "4.7.7",
     "description": "HermesProxy - connection proxy that lets modern WoW Classic clients play on legacy Vanilla/TBC/WotLK emulator cores (VMaNGOS, CMaNGOS, TrinityCore)",
     "homepage": "https://github.com/Xian55/HermesProxy",
     "license": "GPL-3.0-only",
-    "url": "https://github.com/Xian55/HermesProxy/releases/download/v4.7.6/HermesProxy-Windows-v4.7.6.zip",
-    "hash": "b174a3f08544d70455a9dc1b9a844efa664886357a8e2ec07c44554c990980d7",
-    "extract_dir": "HermesProxy-Windows-v4.7.6",
+    "url": "https://github.com/Xian55/HermesProxy/releases/download/v4.7.7/HermesProxy-Windows-v4.7.7.zip",
+    "hash": "5cb1d5a265208321ff1fa0dce440a21b2e6cba1af0f26e2d7ce5f3df61402639",
+    "extract_dir": "HermesProxy-Windows-v4.7.7",
     "pre_install": "Set-Content \"$dir\\hermesproxy.ps1\" -Value 'Push-Location $PSScriptRoot', 'try { & \"$PSScriptRoot\\HermesProxy.exe\" @args } finally { Pop-Location }'",
     "bin": "hermesproxy.ps1",
     "persist": [
