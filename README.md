@@ -40,6 +40,7 @@ scoop install refaim/nvencc
 | `bifrost` | AI gateway with an OpenAI-compatible API and built-in web UI (Windows x64) | [maximhq/bifrost](https://github.com/maximhq/bifrost) |
 | `freellmapi` | Desktop app and local OpenAI-compatible gateway with provider routing (Windows x64) | [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) |
 | `ruffle` | Adobe Flash Player emulator for desktop SWF games and animations (Windows x64 + x86) | [ruffle-rs/ruffle](https://github.com/ruffle-rs/ruffle) |
+| `gemini-web2api-go` | Gemini web proxy with OpenAI/Gemini APIs, MCP tools and an admin dashboard (Windows x64 + arm64) | [zexadev/gemini-web2api-go](https://github.com/zexadev/gemini-web2api-go) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -116,6 +117,18 @@ up that whole folder: the encrypted provider keys in the database need the separ
 encryption key too. `checkver` accepts only a stable release containing the Windows
 ZIP with the same version as its tag; auto-update reads that exact asset's SHA-256
 digest from the versioned GitHub release API.
+
+`gemini-web2api-go` packages the standalone Windows x64 and ARM64 binaries; Go and
+Docker are not required. Run `gemini-web2api-go`, then open
+<http://localhost:8083/admin>; the OpenAI-compatible base URL is
+<http://localhost:8083/v1>. The initial `config.json` sets `host` to `127.0.0.1`.
+Set `admin_token` before changing it to allow remote access. Scoop persists
+`config.json` and `data/`, including the SQLite database, settings, API key, cookie
+and proxy pools. The native shim supplies absolute `--config` and `--db` paths, so
+starting from another directory uses the same data. Pass those flags explicitly to
+override them; use an absolute path for a custom location. Stop the server before
+updating. Auto-update uses the matching Windows asset's SHA-256 digest from the
+versioned GitHub release API.
 
 ## Updates
 

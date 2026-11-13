@@ -1,0 +1,60 @@
+{
+    "version": "4.28.0",
+    "description": "Gemini web proxy with OpenAI-compatible and native Gemini APIs, MCP tools and an admin dashboard",
+    "homepage": "https://github.com/zexadev/gemini-web2api-go",
+    "license": "MIT",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.28.0/gemini-web2api-go_v4.28.0_windows_amd64.exe#/gemini-web2api-go.exe",
+            "hash": "4a990dbc106334c73ee2a4ae26b917073a2b82f069dc9da1b1073a608576d9a1"
+        },
+        "arm64": {
+            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.28.0/gemini-web2api-go_v4.28.0_windows_arm64.exe#/gemini-web2api-go.exe",
+            "hash": "ed421bb36a0bf2cd7d0c561ca035e251b01769d0db83ef78834f8578fa545279"
+        }
+    },
+    "pre_install": [
+        "if (!(Test-Path -LiteralPath \"$persist_dir\\config.json\")) {",
+        "    Set-Content -LiteralPath \"$dir\\config.json\" -Value '{\"host\":\"127.0.0.1\"}' -Encoding Ascii",
+        "}"
+    ],
+    "bin": [
+        [
+            "gemini-web2api-go.exe",
+            "gemini-web2api-go",
+            "--config \"$persist_dir\\config.json\" --db \"$persist_dir\\data\\gemini.db\""
+        ]
+    ],
+    "persist": [
+        "config.json",
+        "data"
+    ],
+    "checkver": {
+        "github": "https://api.github.com/repos/zexadev/gemini-web2api-go/releases/latest",
+        "jsonpath": "$.assets[*].browser_download_url",
+        "regex": "download/v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)/gemini-web2api-go_v\\k<version>_windows_amd64\\.exe(?=\"|$)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v$version/gemini-web2api-go_v$version_windows_amd64.exe#/gemini-web2api-go.exe",
+                "hash": {
+                    "url": "https://api.github.com/repos/zexadev/gemini-web2api-go/releases/tags/v$version",
+                    "jsonpath": "$.assets[?(@.name == '$basename')].digest"
+                }
+            },
+            "arm64": {
+                "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v$version/gemini-web2api-go_v$version_windows_arm64.exe#/gemini-web2api-go.exe",
+                "hash": {
+                    "url": "https://api.github.com/repos/zexadev/gemini-web2api-go/releases/tags/v$version",
+                    "jsonpath": "$.assets[?(@.name == '$basename')].digest"
+                }
+            }
+        }
+    },
+    "notes": [
+        "Run gemini-web2api-go, then open http://localhost:8083/admin. The OpenAI-compatible base URL is http://localhost:8083/v1.",
+        "The initial config.json binds to 127.0.0.1. Set an admin_token before changing host to allow remote access.",
+        "config.json and data (SQLite database, settings, API key, cookie and proxy pools) are persisted across updates. The command uses their absolute paths; pass --config <path> or --db <path> to override them. Stop the server before updating."
+    ]
+}
