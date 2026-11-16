@@ -1,12 +1,12 @@
 {
-    "version": "0.16.30",
+    "version": "0.16.31",
     "description": "FreeLLMAPI - desktop app and local OpenAI-compatible gateway with routing across LLM providers",
     "homepage": "https://github.com/tashfeenahmed/freellmapi",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/tashfeenahmed/freellmapi/releases/download/v0.16.30/FreeLLMAPI-0.16.30-win.zip",
-            "hash": "5c39db157d3c754bca2468a4b8d72461308d88c5928aa4ade812d1145f3d9c29"
+            "url": "https://github.com/tashfeenahmed/freellmapi/releases/download/v0.16.31/FreeLLMAPI-0.16.31-win.zip",
+            "hash": "00c7e896ee6ccab5bf8ebc48f0b859570262355fc695fb12ee1d655e2a14e198"
         }
     },
     "bin": [
