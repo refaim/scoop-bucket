@@ -1,16 +1,16 @@
 {
-    "version": "4.31.0",
+    "version": "4.32.0",
     "description": "Gemini web proxy with OpenAI-compatible and native Gemini APIs, MCP tools and an admin dashboard",
     "homepage": "https://github.com/zexadev/gemini-web2api-go",
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.31.0/gemini-web2api-go_v4.31.0_windows_amd64.exe#/gemini-web2api-go.exe",
-            "hash": "b1f6538ddb9cf159de0605b138ec5e1d2636bfb7fd986f9f62b8ac0f9ad48513"
+            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.32.0/gemini-web2api-go_v4.32.0_windows_amd64.exe#/gemini-web2api-go.exe",
+            "hash": "a06db3376c37bc9c4957a478d662f22149e474be520daa767d4eaccee0432877"
         },
         "arm64": {
-            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.31.0/gemini-web2api-go_v4.31.0_windows_arm64.exe#/gemini-web2api-go.exe",
-            "hash": "76a93c739968eff7f86d94533a2a91a53f292941bf6d7d4a5f1173ef15477eaa"
+            "url": "https://github.com/zexadev/gemini-web2api-go/releases/download/v4.32.0/gemini-web2api-go_v4.32.0_windows_arm64.exe#/gemini-web2api-go.exe",
+            "hash": "f148f381b83e5126e2bf176c46b4d7b19c6cdc13b131073dc88ab70d6563a0cb"
         }
     },
     "pre_install": [
