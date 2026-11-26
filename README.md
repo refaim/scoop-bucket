@@ -41,6 +41,7 @@ scoop install refaim/nvencc
 | `freellmapi` | Desktop app and local OpenAI-compatible gateway with provider routing (Windows x64) | [tashfeenahmed/freellmapi](https://github.com/tashfeenahmed/freellmapi) |
 | `ruffle` | Adobe Flash Player emulator for desktop SWF games and animations (Windows x64 + x86) | [ruffle-rs/ruffle](https://github.com/ruffle-rs/ruffle) |
 | `gemini-web2api-go` | Gemini web proxy with OpenAI/Gemini APIs, MCP tools and an admin dashboard (Windows x64 + arm64) | [zexadev/gemini-web2api-go](https://github.com/zexadev/gemini-web2api-go) |
+| `catvoice` | Offline SAPI voices for the CatChat WoW Forever addon (Windows x64, native installer) | [daniilcathey/catvoice](https://github.com/daniilcathey/catvoice) |
 
 `vp-bestsource`, `vp-vship` and `vp-bwdif` are VapourSynth plugins, not programs. The
 DLL stays inside the package directory - link it into your plugin path yourself. All
@@ -129,6 +130,22 @@ starting from another directory uses the same data. Pass those flags explicitly 
 override them; use an absolute path for a custom location. Stop the server before
 updating. Auto-update uses the matching Windows asset's SHA-256 digest from the
 versioned GitHub release API.
+
+`catvoice` runs the official CatVoice installer with administrator rights on
+Windows 10/11 x64. It installs to the native location (normally
+`C:\Program Files\CatVoice`), registers the SAPI engine and voices, adds the engine's
+certificate to Windows certificate stores, and configures startup as upstream
+intends. Extraction alone cannot provide this integration. The setup executable
+is unsigned; Scoop verifies its SHA-256 without bypassing Windows protections.
+CatVoice's own application license is not published; the upstream README lists
+the bundled components' licenses.
+
+Close WoW before installing, updating or removing CatVoice. Updates run the new
+installer over the existing installation, as upstream recommends. Removal uses
+the registered native uninstaller to unregister the engine, voices and
+certificate. Install the [CatChat addon](https://github.com/daniilcathey/catvoice/releases/latest)
+separately; use the CatVoice tray icon to stop the synthesizer or change startup.
+The actual installer is not launched by this repository's tests.
 
 ## Updates
 

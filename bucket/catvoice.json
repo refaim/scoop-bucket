@@ -1,0 +1,61 @@
+{
+    "version": "0.1.0",
+    "description": "Offline SAPI voices for the CatChat addon in World of Warcraft Forever (native Windows installation)",
+    "homepage": "https://github.com/daniilcathey/catvoice",
+    "license": {
+        "identifier": "Proprietary",
+        "url": "https://github.com/daniilcathey/catvoice/blob/main/README.md"
+    },
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/daniilcathey/catvoice/releases/download/v0.1.0/CatVoice-Setup-0.1.0.exe#/setup.exe",
+            "hash": "72c30ad2d40fe7cf348be0df8ec9ba982d66a0065e9129ed7f334dc416f46de6"
+        }
+    },
+    "pre_install": "if (!(is_admin)) { abort 'CatVoice requires administrator rights to register its SAPI engine, voices and certificate. Run Scoop from an elevated shell.' }",
+    "pre_uninstall": "if (!(is_admin)) { abort 'CatVoice updates and removal require administrator rights. Run Scoop from an elevated shell.' }",
+    "installer": {
+        "file": "setup.exe",
+        "args": [
+            "/SP-",
+            "/VERYSILENT",
+            "/SUPPRESSMSGBOXES",
+            "/NORESTART"
+        ]
+    },
+    "uninstaller": {
+        "script": [
+            "if ($cmd -eq 'uninstall') {",
+            "    if (!(is_admin)) { abort 'CatVoice removal requires administrator rights. Run Scoop from an elevated shell.' }",
+            "    $entries = @(Get-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*', 'HKLM:\\SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' -ErrorAction SilentlyContinue | Where-Object { $_.DisplayName -match '^CatVoice(?:\\s|$)' })",
+            "    if ($entries.Count -ne 1) { abort 'Cannot uniquely locate the registered CatVoice uninstaller. Check Installed apps in Windows Settings.' }",
+            "    $uninstaller = ([string]$entries[0].UninstallString).Trim('\"')",
+            "    if ([string]::IsNullOrWhiteSpace($uninstaller)) { abort 'The registered CatVoice uninstall command is empty.' }",
+            "    if (!(Test-Path -LiteralPath $uninstaller -PathType Leaf)) { abort 'The registered CatVoice uninstaller is missing.' }",
+            "    if (!(Invoke-ExternalCommand $uninstaller -ArgumentList '/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART' -Activity 'Uninstalling CatVoice')) { abort 'CatVoice uninstallation failed.' }",
+            "}"
+        ]
+    },
+    "checkver": {
+        "github": "https://api.github.com/repos/daniilcathey/catvoice/releases/latest",
+        "jsonpath": "$.assets[*].browser_download_url",
+        "regex": "download/v(?<version>[0-9]+\\.[0-9]+\\.[0-9]+)/CatVoice-Setup-\\k<version>\\.exe(?=\"|$)"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/daniilcathey/catvoice/releases/download/v$version/CatVoice-Setup-$version.exe#/setup.exe",
+                "hash": {
+                    "url": "https://api.github.com/repos/daniilcathey/catvoice/releases/tags/v$version",
+                    "jsonpath": "$.assets[?(@.name == '$basename')].digest"
+                }
+            }
+        }
+    },
+    "notes": [
+        "This is a nonportable package for Windows 10/11 x64. It requires administrator rights and runs the official installer in its native location (normally C:\\Program Files\\CatVoice).",
+        "The official installer registers SAPI voices and the speech engine, adds the engine certificate to Windows certificate stores, and configures startup. The official uninstaller removes this integration. Scoop updates install over the existing version.",
+        "The setup executable is unsigned. Scoop verifies its SHA-256; this manifest does not bypass SmartScreen or Defender and does not import certificates itself.",
+        "Close WoW before installing, updating or removing CatVoice. Install the CatChat addon separately from https://github.com/daniilcathey/catvoice/releases/latest. The upstream tray icon manages the synthesizer and startup."
+    ]
+}
