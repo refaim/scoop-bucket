@@ -1,12 +1,12 @@
 {
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "Bifrost AI gateway with an OpenAI-compatible API and built-in web interface",
     "homepage": "https://github.com/maximhq/bifrost",
     "license": "Apache-2.0",
     "architecture": {
         "64bit": {
-            "url": "https://downloads.getmaxim.ai/bifrost/v2.6.0/windows/amd64/bifrost-http.exe",
-            "hash": "c6e7c359fd77c74a7cfe710aa0b4038e25639242fa7d929ae812f2f2b898f2c0"
+            "url": "https://downloads.getmaxim.ai/bifrost/v2.7.0/windows/amd64/bifrost-http.exe",
+            "hash": "6549a20b38fdb8987c858540deeee7323da836747c5071cad9db1b0c96f6ef8f"
         }
     },
     "bin": [
